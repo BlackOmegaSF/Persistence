@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "persistence",
+  "version": "${version}",
+  "name": "Persistence",
+  "description": "",
+  "authors": ["Kian Leiner"],
+  "environment": "server",
+  "entrypoints": {
+    "server": [
+      "com.kleinercode.fabric.persistence.Persistence"
+    ]
+  },
+  "mixins": [
+    "persistence.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
