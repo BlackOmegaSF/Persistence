@@ -6,7 +6,9 @@
   "mixins": [],
   "client": [],
   "server": [
-
+    "PlayerInventoryAccessor",
+    "PlayerInventoryDropItemMixin",
+    "PlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
