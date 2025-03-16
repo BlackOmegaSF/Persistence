@@ -6,11 +6,11 @@ import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ContainerComponent;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.world.GameRules;
-import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +29,7 @@ public class Persistence implements DedicatedServerModInitializer {
         ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
 
             Text keepInventoryMessageBase = Text.literal("Make sure to turn keepInventory off in world ");
-            for (World world : server.getWorlds()) {
+            for (ServerWorld world : server.getWorlds()) {
                 if (world.getGameRules().getBoolean(GameRules.KEEP_INVENTORY)) {
                     MutableText text = keepInventoryMessageBase.copy();
                     text.append(world.asString());
