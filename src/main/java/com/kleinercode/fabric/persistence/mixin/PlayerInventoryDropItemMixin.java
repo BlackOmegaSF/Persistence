@@ -17,7 +17,7 @@ public abstract class PlayerInventoryDropItemMixin {
         PlayerInventoryAccessor accessor = (PlayerInventoryAccessor) this;
         ActionResult result = PlayerDeathDropItemsCallback.EVENT.invoker().interact(accessor.getCombinedInventory(), accessor.getPlayer());
 
-        if (result == ActionResult.FAIL) {
+        if (result.equals(ActionResult.FAIL)) {
             info.cancel();
         }
     }
