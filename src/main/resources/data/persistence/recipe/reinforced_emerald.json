@@ -6,15 +6,11 @@
     "iii"
   ],
   "key": {
-    "i": {
-      "item": "minecraft:iron_ingot"
-    },
-    "e": {
-      "item": "minecraft:emerald"
-    }
+    "i": "minecraft:iron_ingot",
+    "e": "minecraft:emerald"
   },
   "result": {
-    "id": "minecraft:emerald"
-
+    "id": "minecraft:emerald",
+    "count": 1
   }
 }
