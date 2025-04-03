@@ -15,7 +15,7 @@ public abstract class PlayerInventoryDropItemMixin {
     private void onBeforeDropItems(CallbackInfo info) {
 
         PlayerInventoryAccessor accessor = (PlayerInventoryAccessor) this;
-        ActionResult result = PlayerDeathDropItemsCallback.EVENT.invoker().interact(accessor.getCombinedInventory(), accessor.getPlayer());
+        ActionResult result = PlayerDeathDropItemsCallback.EVENT.invoker().interact(accessor.getMain(), accessor.getEquipment(), accessor.getPlayer());
 
         if (result.equals(ActionResult.FAIL)) {
             info.cancel();

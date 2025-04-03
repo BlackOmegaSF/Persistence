@@ -2,6 +2,7 @@ package com.kleinercode.fabric.persistence;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
+import net.minecraft.entity.EntityEquipment;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -22,9 +23,9 @@ public interface PlayerDeathDropItemsCallback {
      */
 
     Event<PlayerDeathDropItemsCallback> EVENT = EventFactory.createArrayBacked(PlayerDeathDropItemsCallback.class,
-            (listeners) -> (list, player) -> {
+            (listeners) -> (mainInventory, equipment, player) -> {
                 for (PlayerDeathDropItemsCallback listener : listeners) {
-                    ActionResult result = listener.interact(list, player);
+                    ActionResult result = listener.interact(mainInventory, equipment, player);
 
                     if (result != ActionResult.PASS) {
                         return result;
@@ -35,6 +36,6 @@ public interface PlayerDeathDropItemsCallback {
             }
             );
 
-    ActionResult interact(List<DefaultedList<ItemStack>> list, PlayerEntity player);
+    ActionResult interact(DefaultedList<ItemStack> mainInventory, EntityEquipment equipment, PlayerEntity player);
 
 }

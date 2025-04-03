@@ -1,5 +1,6 @@
 package com.kleinercode.fabric.persistence.mixin;
 
+import net.minecraft.entity.EntityEquipment;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -12,7 +13,10 @@ import java.util.List;
 @Mixin(PlayerInventory.class)
 public interface PlayerInventoryAccessor {
     @Accessor
-    List<DefaultedList<ItemStack>> getCombinedInventory();
+    DefaultedList<ItemStack> getMain();
+
+    @Accessor
+    EntityEquipment getEquipment();
 
     @Accessor
     PlayerEntity getPlayer();

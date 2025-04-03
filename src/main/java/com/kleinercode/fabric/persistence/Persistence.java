@@ -5,6 +5,8 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ContainerComponent;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.MutableText;
@@ -14,6 +16,7 @@ import net.minecraft.world.GameRules;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Persistence implements DedicatedServerModInitializer {
@@ -39,38 +42,67 @@ public class Persistence implements DedicatedServerModInitializer {
 
         });
 
-        PlayerDeathDropItemsCallback.EVENT.register((list, player) -> {
-            // Incoming list is of combined inventory, iterate through each one
-            for(List<ItemStack> stackList : list) {
-                for (int i = 0; i < stackList.size(); ++i) {
-                    ItemStack itemStack = stackList.get(i);
-                    if (!itemStack.isEmpty()) {
-                        if (itemStack.isIn(ConventionalItemTags.SHULKER_BOXES)) {
-                            // Further shulker processing
-                            List<ItemStack> shulkerInventory = Utils.getShulkerInventory(itemStack);
-                            for (int j = 0; j < shulkerInventory.size(); ++j) {
-                                ItemStack slotItem = shulkerInventory.get(j);
-                                if (!Utils.checkForPersistence(slotItem) && !slotItem.isEmpty()) {
-                                    // drop the item and remove it from inventory
-                                    player.dropItem(slotItem, true, false);
-                                    shulkerInventory.set(j, ItemStack.EMPTY);
-                                }
-                            }
-                            itemStack.set(DataComponentTypes.CONTAINER, ContainerComponent.fromStacks(shulkerInventory));
-                        } else {
-                            // Check for persistence
-                            if (!Utils.checkForPersistence(itemStack) && !itemStack.isEmpty()) {
+        PlayerDeathDropItemsCallback.EVENT.register((mainInventory, equipment, player) -> {
+            // Handle main inventory
+            for (int i = 0; i < mainInventory.size(); ++i) {
+                ItemStack itemStack = mainInventory.get(i);
+                if (!itemStack.isEmpty()) {
+                    if (itemStack.isIn(ConventionalItemTags.SHULKER_BOXES)) {
+                        // Further shulker processing
+                        List<ItemStack> shulkerInventory = Utils.getShulkerInventory(itemStack);
+                        for (int j = 0; j < shulkerInventory.size(); ++j) {
+                            ItemStack slotItem = shulkerInventory.get(j);
+                            if (!Utils.checkForPersistence(slotItem)) {
                                 // drop the item and remove it from inventory
-                                player.dropItem(itemStack, true, false);
-                                stackList.set(i, ItemStack.EMPTY);
+                                player.dropItem(slotItem, true, false);
+                                shulkerInventory.set(j, ItemStack.EMPTY);
                             }
+                        }
+                        itemStack.set(DataComponentTypes.CONTAINER, ContainerComponent.fromStacks(shulkerInventory));
+                    } else {
+                        // Check for persistence
+                        if (!Utils.checkForPersistence(itemStack)) {
+                            // drop the item and remove it from inventory
+                            player.dropItem(itemStack, true, false);
+                            mainInventory.set(i, ItemStack.EMPTY);
                         }
                     }
                 }
             }
+
+            for (EquipmentSlot slot : EquipmentSlot.values()) {
+                ItemStack equipmentStack = equipment.get(slot);
+                if (!equipmentStack.isEmpty()) {
+                    if (equipmentStack.isIn(ConventionalItemTags.SHULKER_BOXES)) {
+                        // Process shulker box
+                        List<ItemStack> equippedShulkerInventory = Utils.getShulkerInventory(equipmentStack);
+                        for (int k = 0; k < equippedShulkerInventory.size(); ++k) {
+                            ItemStack slotItem = equippedShulkerInventory.get(k);
+                            if (!Utils.checkForPersistence(slotItem)) {
+                                // drop the item and remove it from inventory
+                                player.dropItem(slotItem, true, false);
+                                equippedShulkerInventory.set(k, ItemStack.EMPTY);
+                            }
+                        }
+                        equipmentStack.set(DataComponentTypes.CONTAINER, ContainerComponent.fromStacks(equippedShulkerInventory));
+                    } else {
+                        // Check for persistence
+                        if (!Utils.checkForPersistence(equipmentStack)) {
+                            // drop the item and remove it from inventory
+                            player.dropItem(equipmentStack, true, false);
+                            equipment.put(slot, ItemStack.EMPTY);
+                        }
+                    }
+                }
+            }
+
             return ActionResult.FAIL;
         });
 
+
+    }
+
+    private static void processStackList(List<ItemStack> stackList, PlayerEntity player) {
 
     }
 }
