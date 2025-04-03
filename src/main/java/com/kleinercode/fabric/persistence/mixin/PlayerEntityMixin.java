@@ -12,6 +12,8 @@ public abstract class PlayerEntityMixin {
     @Inject(method = "copyFrom", at = @At("TAIL"))
     private void endOfCopyFrom(ServerPlayerEntity oldPlayer, boolean alive, CallbackInfo ci) {
         ((ServerPlayerEntity)(Object)this).getInventory().clone(oldPlayer.getInventory());
+
+        //TODO
     }
 
 }

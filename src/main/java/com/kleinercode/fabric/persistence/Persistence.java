@@ -100,7 +100,7 @@ public class Persistence implements DedicatedServerModInitializer {
 
     }
 
-    private static void processStackList(List<ItemStack> stackList, PlayerEntity player) {
+    //TODO Add command to make something persistent
+    //TODO Add logic for crafting reinforced emerald
 
-    }
 }
