@@ -17,7 +17,7 @@ public abstract class ShapedRecipeMixin {
     private void headOfCraft(CraftingRecipeInput craftingRecipeInput, RegistryWrapper.WrapperLookup wrapperLookup, CallbackInfoReturnable<ItemStack> ci) {
         if (craftingRecipeInput.equals(Utils.EMERALD_INPUT)) {
             // We're crafting the emerald, so return the custom item
-            ci.setReturnValue(Utils.reinforcedEmerald);
+            ci.setReturnValue(Utils.reinforcedEmerald.copy());
         }
     }
 
