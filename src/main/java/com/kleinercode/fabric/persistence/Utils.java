@@ -4,6 +4,8 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ContainerComponent;
 import net.minecraft.component.type.LoreComponent;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 
@@ -30,6 +32,27 @@ public class Utils {
             slots.set(i, tempSlots.get(i));
         }
         return slots;
+    }
+
+    public static final CraftingRecipeInput EMERALD_INPUT = CraftingRecipeInput.create(3, 3, List.of(
+            new ItemStack(Items.IRON_INGOT, 1),
+            new ItemStack(Items.IRON_INGOT, 1),
+            new ItemStack(Items.IRON_INGOT, 1),
+            new ItemStack(Items.IRON_INGOT, 1),
+            new ItemStack(Items.EMERALD, 1),
+            new ItemStack(Items.IRON_INGOT, 1),
+            new ItemStack(Items.IRON_INGOT, 1),
+            new ItemStack(Items.IRON_INGOT, 1),
+            new ItemStack(Items.IRON_INGOT, 1)
+    ));
+
+    public static final ItemStack reinforcedEmerald = createReinforcedEmerald();
+
+    private static ItemStack createReinforcedEmerald() {
+        ItemStack emerald = new ItemStack(Items.EMERALD, 1);
+        emerald.set(DataComponentTypes.LORE, new LoreComponent(List.of(Text.literal("Persistent"))));
+        emerald.set(DataComponentTypes.ITEM_NAME, Text.literal("Reinforced Emerald"));
+        return emerald;
     }
 
 }

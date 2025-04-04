@@ -8,7 +8,8 @@
   "server": [
     "PlayerInventoryAccessor",
     "PlayerInventoryDropItemMixin",
-    "PlayerEntityMixin"
+    "PlayerEntityMixin",
+    "ShapedRecipeMixin"
   ],
   "injectors": {
     "defaultRequire": 1
