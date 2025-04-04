@@ -13,7 +13,7 @@ public abstract class PlayerEntityMixin {
     private void endOfCopyFrom(ServerPlayerEntity oldPlayer, boolean alive, CallbackInfo ci) {
         ((ServerPlayerEntity)(Object)this).getInventory().clone(oldPlayer.getInventory());
 
-        //TODO
+        //TODO Figure out why I do this
     }
 
 }
