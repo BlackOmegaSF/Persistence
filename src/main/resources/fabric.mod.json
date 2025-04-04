@@ -7,6 +7,9 @@
   "authors": ["Kian Leiner"],
   "environment": "server",
   "entrypoints": {
+    "fabric-datagen": [
+      "com.kleinercode.fabric.persistence.PersistenceDataGenerator"
+    ],
     "server": [
       "com.kleinercode.fabric.persistence.Persistence"
     ]

@@ -74,6 +74,10 @@ java {
     withSourcesJar()
 }
 
+fabricApi {
+    configureDataGeneration()
+}
+
 jar {
     from("LICENSE") {
         rename { "${it}_${project.archivesBaseName}" }
