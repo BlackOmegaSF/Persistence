@@ -1,16 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "e": "minecraft:emerald",
+    "i": "minecraft:iron_ingot"
+  },
   "pattern": [
     "iii",
     "iei",
     "iii"
   ],
-  "key": {
-    "i": "minecraft:iron_ingot",
-    "e": "minecraft:emerald"
-  },
   "result": {
-    "id": "minecraft:emerald",
-    "count": 1
+    "count": 1,
+    "id": "minecraft:emerald"
   }
 }
