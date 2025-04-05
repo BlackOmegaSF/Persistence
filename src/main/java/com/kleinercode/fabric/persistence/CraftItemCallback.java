@@ -2,7 +2,6 @@ package com.kleinercode.fabric.persistence;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
-import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.util.ActionResult;
 

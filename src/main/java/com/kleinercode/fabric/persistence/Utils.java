@@ -62,18 +62,6 @@ public class Utils {
         stack.set(DataComponentTypes.LORE, new LoreComponent(newLines));
     }
 
-    public static final CraftingRecipeInput EMERALD_INPUT = CraftingRecipeInput.create(3, 3, List.of(
-            new ItemStack(Items.IRON_INGOT),
-            new ItemStack(Items.IRON_INGOT),
-            new ItemStack(Items.IRON_INGOT),
-            new ItemStack(Items.IRON_INGOT),
-            new ItemStack(Items.EMERALD),
-            new ItemStack(Items.IRON_INGOT),
-            new ItemStack(Items.IRON_INGOT),
-            new ItemStack(Items.IRON_INGOT),
-            new ItemStack(Items.IRON_INGOT)
-    ));
-
     public static final ItemStack REINFORCED_EMERALD = createReinforcedEmerald();
 
     private static ItemStack createReinforcedEmerald() {
