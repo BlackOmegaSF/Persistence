@@ -19,7 +19,7 @@ public class Utils {
         LoreComponent lore = itemStack.get(DataComponentTypes.LORE);
         if (lore == null) return false;
         for (Text text : lore.lines()) {
-            if (!text.contains(Text.literal("Persistent"))) return true;
+            if (text.contains(Text.literal("Persistent"))) return true;
         }
         return false;
     }
@@ -34,19 +34,32 @@ public class Utils {
         return slots;
     }
 
+    public static void addPersistence(ItemStack stack) {
+        // Adds persistence to an ItemStack, except if it's empty or already has persistence
+        if (stack.isEmpty()) return;
+        if (checkForPersistence(stack)) return;
+        LoreComponent lore = stack.get(DataComponentTypes.LORE);
+        List<Text> newLines = new ArrayList<>();
+        if (lore != null) {
+            newLines.addAll(lore.lines());
+        }
+        newLines.add(Text.literal("Persistent"));
+        stack.set(DataComponentTypes.LORE, new LoreComponent(newLines));
+    }
+
     public static final CraftingRecipeInput EMERALD_INPUT = CraftingRecipeInput.create(3, 3, List.of(
-            new ItemStack(Items.IRON_INGOT, 1),
-            new ItemStack(Items.IRON_INGOT, 1),
-            new ItemStack(Items.IRON_INGOT, 1),
-            new ItemStack(Items.IRON_INGOT, 1),
-            new ItemStack(Items.EMERALD, 1),
-            new ItemStack(Items.IRON_INGOT, 1),
-            new ItemStack(Items.IRON_INGOT, 1),
-            new ItemStack(Items.IRON_INGOT, 1),
-            new ItemStack(Items.IRON_INGOT, 1)
+            new ItemStack(Items.IRON_INGOT),
+            new ItemStack(Items.IRON_INGOT),
+            new ItemStack(Items.IRON_INGOT),
+            new ItemStack(Items.IRON_INGOT),
+            new ItemStack(Items.EMERALD),
+            new ItemStack(Items.IRON_INGOT),
+            new ItemStack(Items.IRON_INGOT),
+            new ItemStack(Items.IRON_INGOT),
+            new ItemStack(Items.IRON_INGOT)
     ));
 
-    public static final ItemStack reinforcedEmerald = createReinforcedEmerald();
+    public static final ItemStack REINFORCED_EMERALD = createReinforcedEmerald();
 
     private static ItemStack createReinforcedEmerald() {
         ItemStack emerald = new ItemStack(Items.EMERALD, 1);
