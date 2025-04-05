@@ -8,8 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.collection.DefaultedList;
 
-import java.util.List;
-
 public interface PlayerDeathDropItemsCallback {
 
     /**
