@@ -6,10 +6,13 @@
   "mixins": [],
   "client": [],
   "server": [
+    "ForgingScreenHandlerAccessor",
+    "PlayerEntityMixin",
     "PlayerInventoryAccessor",
     "PlayerInventoryDropItemMixin",
-    "PlayerEntityMixin",
-    "ShapedRecipeMixin"
+    "ShapedRecipeMixin",
+    "AnvilScreenHandlerAccessor",
+    "AnvilScreenHandlerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
