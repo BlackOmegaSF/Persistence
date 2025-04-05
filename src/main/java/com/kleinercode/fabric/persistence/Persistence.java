@@ -6,8 +6,8 @@ import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ContainerComponent;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -97,10 +97,42 @@ public class Persistence implements DedicatedServerModInitializer {
             return ActionResult.FAIL;
         });
 
+        // Add persistence to shulker boxes
+        CraftItemCallback.EVENT.register((craftingRecipeInput, resultStack) -> {
+
+            if (resultStack.itemStack.isIn(ConventionalItemTags.SHULKER_BOXES)) {
+                Utils.addPersistence(resultStack.itemStack);
+                return ActionResult.FAIL;
+            } else {
+                return ActionResult.PASS;
+            }
+
+        });
+
+        // Check for Reinforces Emerald crafting
+        CraftItemCallback.EVENT.register((craftingRecipeInput, resultStack) -> {
+
+            // Manually check for valid reinforced emerald input
+            if (craftingRecipeInput.getHeight() != 3) return ActionResult.PASS;
+            if (craftingRecipeInput.getWidth() != 3) return ActionResult.PASS;
+            List<ItemStack> stacks = craftingRecipeInput.getStacks();
+            if (stacks.size() < 9) return ActionResult.PASS;
+            if (!stacks.get(0).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
+            if (!stacks.get(1).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
+            if (!stacks.get(2).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
+            if (!stacks.get(3).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
+            if (!stacks.get(4).isOf(Items.EMERALD)) return ActionResult.PASS;
+            if (!stacks.get(5).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
+            if (!stacks.get(6).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
+            if (!stacks.get(7).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
+            if (!stacks.get(8).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
+
+            // It's a reinforced emerald, make it so
+            resultStack.setItemStack(Utils.REINFORCED_EMERALD);
+            return ActionResult.FAIL;
+
+        });
 
     }
-
-    //TODO Add command to make something persistent
-    //TODO Add logic for crafting reinforced emerald
 
 }

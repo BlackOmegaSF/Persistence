@@ -14,6 +14,18 @@ import java.util.List;
 
 public class Utils {
 
+    public static class ItemStackWrapper {
+        public ItemStack itemStack;
+
+        public ItemStackWrapper(ItemStack itemStack) {
+            this.itemStack = itemStack;
+        }
+
+        public void setItemStack(ItemStack itemStack) {
+            this.itemStack = itemStack;
+        }
+    }
+
     public static boolean checkForPersistence(ItemStack itemStack) {
         if (itemStack.isEmpty()) return false;
         LoreComponent lore = itemStack.get(DataComponentTypes.LORE);
