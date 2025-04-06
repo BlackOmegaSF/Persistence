@@ -35,6 +35,9 @@ public class Utils {
         }
         for (Text text : lore.styledLines()) {
             if (text.contains(Text.literal("Persistent"))) return true;
+            for (Text textSibling : text.getSiblings()) {
+                if (textSibling.contains(Text.literal("Persistent"))) return true;
+            }
         }
         return false;
     }
