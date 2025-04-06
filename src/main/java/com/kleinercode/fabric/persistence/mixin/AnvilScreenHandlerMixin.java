@@ -62,6 +62,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
         if (newNameInput != null && !StringHelper.isBlank(newNameInput)) {
             if (!newNameInput.equals(firstSlot.getName().getString())) {
                 returnStack.set(DataComponentTypes.CUSTOM_NAME, Text.literal(newNameInput));
+                anvilScreenAccessor.getLevelCost().set(2);
             }
         } else if (firstSlot.contains(DataComponentTypes.CUSTOM_NAME)) {
             returnStack.remove(DataComponentTypes.CUSTOM_NAME);
