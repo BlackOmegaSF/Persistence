@@ -8,7 +8,7 @@
   "environment": "server",
   "entrypoints": {
     "fabric-datagen": [
-      "com.kleinercode.fabric.persistence.PersistenceDataGenerator"
+      "com.kleinercode.fabric.persistence.datagen.PersistenceDataGeneratorEntrypoint"
     ],
     "server": [
       "com.kleinercode.fabric.persistence.Persistence"
