@@ -4,8 +4,6 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ContainerComponent;
 import net.minecraft.component.type.LoreComponent;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 
@@ -13,18 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Utils {
-
-    public static class ItemStackWrapper {
-        public ItemStack itemStack;
-
-        public ItemStackWrapper(ItemStack itemStack) {
-            this.itemStack = itemStack;
-        }
-
-        public void setItemStack(ItemStack itemStack) {
-            this.itemStack = itemStack;
-        }
-    }
 
     public static boolean checkForPersistence(ItemStack itemStack) {
         if (itemStack.isEmpty()) return false;
@@ -63,15 +49,6 @@ public class Utils {
         }
         newLines.add(Text.literal("Persistent"));
         stack.set(DataComponentTypes.LORE, new LoreComponent(newLines));
-    }
-
-    public static final ItemStack REINFORCED_EMERALD = createReinforcedEmerald();
-
-    private static ItemStack createReinforcedEmerald() {
-        ItemStack emerald = new ItemStack(Items.EMERALD, 1);
-        emerald.set(DataComponentTypes.LORE, new LoreComponent(List.of(Text.literal("Persistent"))));
-        emerald.set(DataComponentTypes.ITEM_NAME, Text.literal("Reinforced Emerald"));
-        return emerald;
     }
 
 }

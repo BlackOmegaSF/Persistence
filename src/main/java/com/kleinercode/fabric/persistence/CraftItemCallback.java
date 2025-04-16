@@ -1,5 +1,6 @@
 package com.kleinercode.fabric.persistence;
 
+import com.kleinercode.fabric.persistence.utils.ItemStackWrapper;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.recipe.input.CraftingRecipeInput;
@@ -26,6 +27,6 @@ public interface CraftItemCallback {
         return ActionResult.SUCCESS;
     });
 
-    ActionResult interact(CraftingRecipeInput craftingRecipeInput, Utils.ItemStackWrapper resultStack);
+    ActionResult interact(CraftingRecipeInput craftingRecipeInput, ItemStackWrapper resultStack);
 
 }

@@ -1,5 +1,6 @@
 package com.kleinercode.fabric.persistence;
 
+import com.kleinercode.fabric.persistence.utils.ReinforcedEmeraldProvider;
 import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
@@ -130,7 +131,7 @@ public class Persistence implements DedicatedServerModInitializer {
                 if (!stacks.get(8).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
 
                 // It's a reinforced emerald, make it so
-                resultStack.setItemStack(Utils.REINFORCED_EMERALD);
+                resultStack.setItemStack(ReinforcedEmeraldProvider.createReinforcedEmerald());
                 return ActionResult.FAIL;
             }
             return ActionResult.PASS;

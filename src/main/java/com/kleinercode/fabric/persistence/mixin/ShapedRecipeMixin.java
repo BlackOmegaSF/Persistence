@@ -2,6 +2,7 @@ package com.kleinercode.fabric.persistence.mixin;
 
 import com.kleinercode.fabric.persistence.CraftItemCallback;
 import com.kleinercode.fabric.persistence.Utils;
+import com.kleinercode.fabric.persistence.utils.ItemStackWrapper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.recipe.input.CraftingRecipeInput;
@@ -19,7 +20,7 @@ public abstract class ShapedRecipeMixin {
     private void headOfCraft(CraftingRecipeInput craftingRecipeInput, RegistryWrapper.WrapperLookup wrapperLookup, CallbackInfoReturnable<ItemStack> ci) {
 
         ShapedRecipeAccessor accessor = (ShapedRecipeAccessor) this;
-        Utils.ItemStackWrapper resultStack = new Utils.ItemStackWrapper(accessor.getResult().copy());
+        ItemStackWrapper resultStack = new ItemStackWrapper(accessor.getResult().copy());
         ActionResult result = CraftItemCallback.EVENT.invoker().interact(craftingRecipeInput, resultStack);
 
         if (result.equals(ActionResult.FAIL)) {

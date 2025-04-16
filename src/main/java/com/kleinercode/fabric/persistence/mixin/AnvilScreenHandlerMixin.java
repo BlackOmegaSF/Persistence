@@ -1,6 +1,7 @@
 package com.kleinercode.fabric.persistence.mixin;
 
 import com.kleinercode.fabric.persistence.Utils;
+import com.kleinercode.fabric.persistence.utils.ReinforcedEmeraldProvider;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -40,7 +41,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
 
         // Get second input slot, and get out if it's not a Reinforced Emerald
         ItemStack secondSlot = input.getStack(1);
-        if (secondSlot.isEmpty() || !ItemStack.areEqual(secondSlot, Utils.REINFORCED_EMERALD)) return;
+        if (secondSlot.isEmpty() || !ItemStack.areEqual(secondSlot, ReinforcedEmeraldProvider.REINFORCED_EMERALD)) return;
 
         // The second slot is a reinforced emerald, so copy the first input slot to modify safely
         ItemStack returnStack = firstSlot.copy();
