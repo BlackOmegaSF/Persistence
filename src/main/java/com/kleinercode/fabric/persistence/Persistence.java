@@ -114,24 +114,27 @@ public class Persistence implements DedicatedServerModInitializer {
         // Check for Reinforced Emerald crafting
         CraftItemCallback.EVENT.register((craftingRecipeInput, resultStack) -> {
 
-            // Manually check for valid reinforced emerald input
-            if (craftingRecipeInput.getHeight() != 3) return ActionResult.PASS;
-            if (craftingRecipeInput.getWidth() != 3) return ActionResult.PASS;
-            List<ItemStack> stacks = craftingRecipeInput.getStacks();
-            if (stacks.size() < 9) return ActionResult.PASS;
-            if (!stacks.get(0).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
-            if (!stacks.get(1).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
-            if (!stacks.get(2).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
-            if (!stacks.get(3).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
-            if (!stacks.get(4).isOf(Items.EMERALD)) return ActionResult.PASS;
-            if (!stacks.get(5).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
-            if (!stacks.get(6).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
-            if (!stacks.get(7).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
-            if (!stacks.get(8).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
+            if (resultStack.itemStack.isOf(Items.EMERALD)) {
+                // Manually check for valid reinforced emerald input
+                if (craftingRecipeInput.getHeight() != 3) return ActionResult.PASS;
+                if (craftingRecipeInput.getWidth() != 3) return ActionResult.PASS;
+                List<ItemStack> stacks = craftingRecipeInput.getStacks();
+                if (stacks.size() < 9) return ActionResult.PASS;
+                if (!stacks.get(0).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
+                if (!stacks.get(1).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
+                if (!stacks.get(2).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
+                if (!stacks.get(3).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
+                if (!stacks.get(4).isOf(Items.EMERALD)) return ActionResult.PASS;
+                if (!stacks.get(5).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
+                if (!stacks.get(6).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
+                if (!stacks.get(7).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
+                if (!stacks.get(8).isOf(Items.IRON_INGOT)) return ActionResult.PASS;
 
-            // It's a reinforced emerald, make it so
-            resultStack.setItemStack(Utils.REINFORCED_EMERALD);
-            return ActionResult.FAIL;
+                // It's a reinforced emerald, make it so
+                resultStack.setItemStack(Utils.REINFORCED_EMERALD);
+                return ActionResult.FAIL;
+            }
+            return ActionResult.PASS;
 
         });
 
