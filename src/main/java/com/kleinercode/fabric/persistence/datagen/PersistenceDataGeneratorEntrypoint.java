@@ -7,7 +7,10 @@ public class PersistenceDataGeneratorEntrypoint implements DataGeneratorEntrypoi
 
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator generator) {
-        generator.createPack().addProvider(EmeraldRecipeGenerator::new);
+        FabricDataGenerator.Pack pack = generator.createPack();
+        pack.addProvider(EmeraldRecipeGenerator::new);
+        pack.addProvider(ShulkerBoxLootTableProvider::new);
+
     }
 
 
