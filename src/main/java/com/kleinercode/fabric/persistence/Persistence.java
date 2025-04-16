@@ -6,8 +6,10 @@ import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ContainerComponent;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -109,7 +111,7 @@ public class Persistence implements DedicatedServerModInitializer {
 
         });
 
-        // Check for Reinforces Emerald crafting
+        // Check for Reinforced Emerald crafting
         CraftItemCallback.EVENT.register((craftingRecipeInput, resultStack) -> {
 
             // Manually check for valid reinforced emerald input
@@ -132,6 +134,22 @@ public class Persistence implements DedicatedServerModInitializer {
             return ActionResult.FAIL;
 
         });
+
+        // Check for Shulker Box crafting
+
+        CraftItemCallback.EVENT.register(((craftingRecipeInput, resultStack) -> {
+
+            if (resultStack.itemStack.isIn(ItemTags.SHULKER_BOXES)) {
+                if (!Utils.checkForPersistence(resultStack.itemStack)) {
+                    // Result is a shulker box without Persistence, so give it Persistence
+                    Utils.addPersistence(resultStack.itemStack);
+                }
+            }
+
+            // Return pass because we altered the item stack but don't need to cancel the whole event
+            return ActionResult.PASS;
+
+        }));
 
     }
 
