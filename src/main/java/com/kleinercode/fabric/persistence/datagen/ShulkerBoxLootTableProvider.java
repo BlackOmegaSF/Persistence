@@ -7,6 +7,7 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
+import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.CopyComponentsLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
@@ -32,7 +33,7 @@ public class ShulkerBoxLootTableProvider extends FabricBlockLootTableProvider {
                             .rolls(ConstantLootNumberProvider.create(1.0F))
                             .with(ItemEntry.builder(Blocks.SHULKER_BOX)
                                 .apply(
-                                    CopyComponentsLootFunction.builder(CopyComponentsLootFunction.Source.BLOCK_ENTITY)
+                                    CopyComponentsLootFunction.blockEntity(LootContextParameters.BLOCK_ENTITY)
                                     .include(DataComponentTypes.CUSTOM_NAME)
                                     .include(DataComponentTypes.CONTAINER)
                                     .include(DataComponentTypes.LOCK)
@@ -52,7 +53,7 @@ public class ShulkerBoxLootTableProvider extends FabricBlockLootTableProvider {
                                         .rolls(ConstantLootNumberProvider.create(1.0F))
                                         .with(ItemEntry.builder(Blocks.BLACK_SHULKER_BOX)
                                                 .apply(
-                                                        CopyComponentsLootFunction.builder(CopyComponentsLootFunction.Source.BLOCK_ENTITY)
+                                                        CopyComponentsLootFunction.blockEntity(LootContextParameters.BLOCK_ENTITY)
                                                                 .include(DataComponentTypes.CUSTOM_NAME)
                                                                 .include(DataComponentTypes.CONTAINER)
                                                                 .include(DataComponentTypes.LOCK)
@@ -72,7 +73,7 @@ public class ShulkerBoxLootTableProvider extends FabricBlockLootTableProvider {
                                         .rolls(ConstantLootNumberProvider.create(1.0F))
                                         .with(ItemEntry.builder(Blocks.BLUE_SHULKER_BOX)
                                                 .apply(
-                                                        CopyComponentsLootFunction.builder(CopyComponentsLootFunction.Source.BLOCK_ENTITY)
+                                                        CopyComponentsLootFunction.blockEntity(LootContextParameters.BLOCK_ENTITY)
                                                                 .include(DataComponentTypes.CUSTOM_NAME)
                                                                 .include(DataComponentTypes.CONTAINER)
                                                                 .include(DataComponentTypes.LOCK)
@@ -92,7 +93,7 @@ public class ShulkerBoxLootTableProvider extends FabricBlockLootTableProvider {
                                         .rolls(ConstantLootNumberProvider.create(1.0F))
                                         .with(ItemEntry.builder(Blocks.BROWN_SHULKER_BOX)
                                                 .apply(
-                                                        CopyComponentsLootFunction.builder(CopyComponentsLootFunction.Source.BLOCK_ENTITY)
+                                                        CopyComponentsLootFunction.blockEntity(LootContextParameters.BLOCK_ENTITY)
                                                                 .include(DataComponentTypes.CUSTOM_NAME)
                                                                 .include(DataComponentTypes.CONTAINER)
                                                                 .include(DataComponentTypes.LOCK)
@@ -112,7 +113,7 @@ public class ShulkerBoxLootTableProvider extends FabricBlockLootTableProvider {
                                         .rolls(ConstantLootNumberProvider.create(1.0F))
                                         .with(ItemEntry.builder(Blocks.CYAN_SHULKER_BOX)
                                                 .apply(
-                                                        CopyComponentsLootFunction.builder(CopyComponentsLootFunction.Source.BLOCK_ENTITY)
+                                                        CopyComponentsLootFunction.blockEntity(LootContextParameters.BLOCK_ENTITY)
                                                                 .include(DataComponentTypes.CUSTOM_NAME)
                                                                 .include(DataComponentTypes.CONTAINER)
                                                                 .include(DataComponentTypes.LOCK)
@@ -132,7 +133,7 @@ public class ShulkerBoxLootTableProvider extends FabricBlockLootTableProvider {
                                         .rolls(ConstantLootNumberProvider.create(1.0F))
                                         .with(ItemEntry.builder(Blocks.GRAY_SHULKER_BOX)
                                                 .apply(
-                                                        CopyComponentsLootFunction.builder(CopyComponentsLootFunction.Source.BLOCK_ENTITY)
+                                                        CopyComponentsLootFunction.blockEntity(LootContextParameters.BLOCK_ENTITY)
                                                                 .include(DataComponentTypes.CUSTOM_NAME)
                                                                 .include(DataComponentTypes.CONTAINER)
                                                                 .include(DataComponentTypes.LOCK)
@@ -152,7 +153,7 @@ public class ShulkerBoxLootTableProvider extends FabricBlockLootTableProvider {
                                         .rolls(ConstantLootNumberProvider.create(1.0F))
                                         .with(ItemEntry.builder(Blocks.GREEN_SHULKER_BOX)
                                                 .apply(
-                                                        CopyComponentsLootFunction.builder(CopyComponentsLootFunction.Source.BLOCK_ENTITY)
+                                                        CopyComponentsLootFunction.blockEntity(LootContextParameters.BLOCK_ENTITY)
                                                                 .include(DataComponentTypes.CUSTOM_NAME)
                                                                 .include(DataComponentTypes.CONTAINER)
                                                                 .include(DataComponentTypes.LOCK)
@@ -172,7 +173,7 @@ public class ShulkerBoxLootTableProvider extends FabricBlockLootTableProvider {
                                         .rolls(ConstantLootNumberProvider.create(1.0F))
                                         .with(ItemEntry.builder(Blocks.LIGHT_BLUE_SHULKER_BOX)
                                                 .apply(
-                                                        CopyComponentsLootFunction.builder(CopyComponentsLootFunction.Source.BLOCK_ENTITY)
+                                                        CopyComponentsLootFunction.blockEntity(LootContextParameters.BLOCK_ENTITY)
                                                                 .include(DataComponentTypes.CUSTOM_NAME)
                                                                 .include(DataComponentTypes.CONTAINER)
                                                                 .include(DataComponentTypes.LOCK)
@@ -192,7 +193,7 @@ public class ShulkerBoxLootTableProvider extends FabricBlockLootTableProvider {
                                         .rolls(ConstantLootNumberProvider.create(1.0F))
                                         .with(ItemEntry.builder(Blocks.LIGHT_GRAY_SHULKER_BOX)
                                                 .apply(
-                                                        CopyComponentsLootFunction.builder(CopyComponentsLootFunction.Source.BLOCK_ENTITY)
+                                                        CopyComponentsLootFunction.blockEntity(LootContextParameters.BLOCK_ENTITY)
                                                                 .include(DataComponentTypes.CUSTOM_NAME)
                                                                 .include(DataComponentTypes.CONTAINER)
                                                                 .include(DataComponentTypes.LOCK)
@@ -212,7 +213,7 @@ public class ShulkerBoxLootTableProvider extends FabricBlockLootTableProvider {
                                         .rolls(ConstantLootNumberProvider.create(1.0F))
                                         .with(ItemEntry.builder(Blocks.LIME_SHULKER_BOX)
                                                 .apply(
-                                                        CopyComponentsLootFunction.builder(CopyComponentsLootFunction.Source.BLOCK_ENTITY)
+                                                        CopyComponentsLootFunction.blockEntity(LootContextParameters.BLOCK_ENTITY)
                                                                 .include(DataComponentTypes.CUSTOM_NAME)
                                                                 .include(DataComponentTypes.CONTAINER)
                                                                 .include(DataComponentTypes.LOCK)
@@ -232,7 +233,7 @@ public class ShulkerBoxLootTableProvider extends FabricBlockLootTableProvider {
                                         .rolls(ConstantLootNumberProvider.create(1.0F))
                                         .with(ItemEntry.builder(Blocks.MAGENTA_SHULKER_BOX)
                                                 .apply(
-                                                        CopyComponentsLootFunction.builder(CopyComponentsLootFunction.Source.BLOCK_ENTITY)
+                                                        CopyComponentsLootFunction.blockEntity(LootContextParameters.BLOCK_ENTITY)
                                                                 .include(DataComponentTypes.CUSTOM_NAME)
                                                                 .include(DataComponentTypes.CONTAINER)
                                                                 .include(DataComponentTypes.LOCK)
@@ -252,7 +253,7 @@ public class ShulkerBoxLootTableProvider extends FabricBlockLootTableProvider {
                                         .rolls(ConstantLootNumberProvider.create(1.0F))
                                         .with(ItemEntry.builder(Blocks.ORANGE_SHULKER_BOX)
                                                 .apply(
-                                                        CopyComponentsLootFunction.builder(CopyComponentsLootFunction.Source.BLOCK_ENTITY)
+                                                        CopyComponentsLootFunction.blockEntity(LootContextParameters.BLOCK_ENTITY)
                                                                 .include(DataComponentTypes.CUSTOM_NAME)
                                                                 .include(DataComponentTypes.CONTAINER)
                                                                 .include(DataComponentTypes.LOCK)
@@ -272,7 +273,7 @@ public class ShulkerBoxLootTableProvider extends FabricBlockLootTableProvider {
                                         .rolls(ConstantLootNumberProvider.create(1.0F))
                                         .with(ItemEntry.builder(Blocks.PINK_SHULKER_BOX)
                                                 .apply(
-                                                        CopyComponentsLootFunction.builder(CopyComponentsLootFunction.Source.BLOCK_ENTITY)
+                                                        CopyComponentsLootFunction.blockEntity(LootContextParameters.BLOCK_ENTITY)
                                                                 .include(DataComponentTypes.CUSTOM_NAME)
                                                                 .include(DataComponentTypes.CONTAINER)
                                                                 .include(DataComponentTypes.LOCK)
@@ -292,7 +293,7 @@ public class ShulkerBoxLootTableProvider extends FabricBlockLootTableProvider {
                                         .rolls(ConstantLootNumberProvider.create(1.0F))
                                         .with(ItemEntry.builder(Blocks.PURPLE_SHULKER_BOX)
                                                 .apply(
-                                                        CopyComponentsLootFunction.builder(CopyComponentsLootFunction.Source.BLOCK_ENTITY)
+                                                        CopyComponentsLootFunction.blockEntity(LootContextParameters.BLOCK_ENTITY)
                                                                 .include(DataComponentTypes.CUSTOM_NAME)
                                                                 .include(DataComponentTypes.CONTAINER)
                                                                 .include(DataComponentTypes.LOCK)
@@ -312,7 +313,7 @@ public class ShulkerBoxLootTableProvider extends FabricBlockLootTableProvider {
                                         .rolls(ConstantLootNumberProvider.create(1.0F))
                                         .with(ItemEntry.builder(Blocks.RED_SHULKER_BOX)
                                                 .apply(
-                                                        CopyComponentsLootFunction.builder(CopyComponentsLootFunction.Source.BLOCK_ENTITY)
+                                                        CopyComponentsLootFunction.blockEntity(LootContextParameters.BLOCK_ENTITY)
                                                                 .include(DataComponentTypes.CUSTOM_NAME)
                                                                 .include(DataComponentTypes.CONTAINER)
                                                                 .include(DataComponentTypes.LOCK)
@@ -332,7 +333,7 @@ public class ShulkerBoxLootTableProvider extends FabricBlockLootTableProvider {
                                         .rolls(ConstantLootNumberProvider.create(1.0F))
                                         .with(ItemEntry.builder(Blocks.WHITE_SHULKER_BOX)
                                                 .apply(
-                                                        CopyComponentsLootFunction.builder(CopyComponentsLootFunction.Source.BLOCK_ENTITY)
+                                                        CopyComponentsLootFunction.blockEntity(LootContextParameters.BLOCK_ENTITY)
                                                                 .include(DataComponentTypes.CUSTOM_NAME)
                                                                 .include(DataComponentTypes.CONTAINER)
                                                                 .include(DataComponentTypes.LOCK)
@@ -352,7 +353,7 @@ public class ShulkerBoxLootTableProvider extends FabricBlockLootTableProvider {
                                         .rolls(ConstantLootNumberProvider.create(1.0F))
                                         .with(ItemEntry.builder(Blocks.YELLOW_SHULKER_BOX)
                                                 .apply(
-                                                        CopyComponentsLootFunction.builder(CopyComponentsLootFunction.Source.BLOCK_ENTITY)
+                                                        CopyComponentsLootFunction.blockEntity(LootContextParameters.BLOCK_ENTITY)
                                                                 .include(DataComponentTypes.CUSTOM_NAME)
                                                                 .include(DataComponentTypes.CONTAINER)
                                                                 .include(DataComponentTypes.LOCK)
