@@ -14,7 +14,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
-import net.minecraft.world.GameRules;
+import net.minecraft.world.rule.GameRules;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.List;
@@ -33,7 +33,7 @@ public class Persistence implements DedicatedServerModInitializer {
 
             Text keepInventoryMessageBase = Text.literal("Make sure to turn keepInventory off in world ");
             for (ServerWorld world : server.getWorlds()) {
-                if (world.getGameRules().getBoolean(GameRules.KEEP_INVENTORY)) {
+                if (world.getGameRules().getValue(GameRules.KEEP_INVENTORY)) {
                     MutableText text = keepInventoryMessageBase.copy();
                     text.append(world.asString());
                     world.getServer().getPlayerManager().broadcast(text, false);
