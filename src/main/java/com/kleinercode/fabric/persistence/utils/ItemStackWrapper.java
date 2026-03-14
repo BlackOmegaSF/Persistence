@@ -1,6 +1,6 @@
 package com.kleinercode.fabric.persistence.utils;
 
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 
 public class ItemStackWrapper {
     public ItemStack itemStack;

@@ -3,8 +3,8 @@ package com.kleinercode.fabric.persistence;
 import com.kleinercode.fabric.persistence.utils.ItemStackWrapper;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
-import net.minecraft.recipe.input.CraftingRecipeInput;
-import net.minecraft.util.ActionResult;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.crafting.CraftingInput;
 
 public interface CraftItemCallback {
 
@@ -19,14 +19,14 @@ public interface CraftItemCallback {
     Event<CraftItemCallback> EVENT = EventFactory.createArrayBacked(CraftItemCallback.class,
             (listeners) -> (craftingRecipeInput, resultStack) -> {
         for (CraftItemCallback listener : listeners) {
-            ActionResult result = listener.interact(craftingRecipeInput, resultStack);
+            InteractionResult result = listener.interact(craftingRecipeInput, resultStack);
 
-            if (result != ActionResult.PASS) return result;
+            if (result != InteractionResult.PASS) return result;
         }
 
-        return ActionResult.SUCCESS;
+        return InteractionResult.SUCCESS;
     });
 
-    ActionResult interact(CraftingRecipeInput craftingRecipeInput, ItemStackWrapper resultStack);
+    InteractionResult interact(CraftingInput craftingRecipeInput, ItemStackWrapper resultStack);
 
 }

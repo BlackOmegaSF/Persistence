@@ -2,11 +2,11 @@ package com.kleinercode.fabric.persistence;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
-import net.minecraft.entity.EntityEquipment;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EntityEquipment;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 
 public interface PlayerDeathDropItemsCallback {
 
@@ -23,17 +23,17 @@ public interface PlayerDeathDropItemsCallback {
     Event<PlayerDeathDropItemsCallback> EVENT = EventFactory.createArrayBacked(PlayerDeathDropItemsCallback.class,
             (listeners) -> (mainInventory, equipment, player) -> {
                 for (PlayerDeathDropItemsCallback listener : listeners) {
-                    ActionResult result = listener.interact(mainInventory, equipment, player);
+                    InteractionResult result = listener.interact(mainInventory, equipment, player);
 
-                    if (result != ActionResult.PASS) {
+                    if (result != InteractionResult.PASS) {
                         return result;
                     }
                 }
 
-                return ActionResult.PASS;
+                return InteractionResult.PASS;
             }
             );
 
-    ActionResult interact(DefaultedList<ItemStack> mainInventory, EntityEquipment equipment, PlayerEntity player);
+    InteractionResult interact(NonNullList<ItemStack> mainInventory, EntityEquipment equipment, Player player);
 
 }
