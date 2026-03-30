@@ -29,12 +29,11 @@ public class Utils {
 
     public static NonNullList<ItemStack> getShulkerInventory(ItemStack shulkerBox) {
         ItemContainerContents container = shulkerBox.get(DataComponents.CONTAINER);
-        List<ItemStack> tempSlots = new ArrayList<>(container.stream().toList());
-        NonNullList<ItemStack> slots = NonNullList.withSize(27, ItemStack.EMPTY);
-        for (int i = 0; i < tempSlots.size(); i++) {
-            slots.set(i, tempSlots.get(i));
+        NonNullList<ItemStack> returnList = NonNullList.withSize(27, ItemStack.EMPTY);
+        if (container != null) {
+            container.copyInto(returnList);
         }
-        return slots;
+        return returnList;
     }
 
     public static void addPersistence(ItemStack stack) {
