@@ -3,7 +3,6 @@ package com.kleinercode.fabric.persistence;
 import com.kleinercode.fabric.persistence.utils.ReinforcedEmeraldProvider;
 import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -48,7 +47,7 @@ public class Persistence implements DedicatedServerModInitializer {
             for (int i = 0; i < mainInventory.size(); ++i) {
                 ItemStack itemStack = mainInventory.get(i);
                 if (!itemStack.isEmpty()) {
-                    if (itemStack.is(ConventionalItemTags.SHULKER_BOXES)) {
+                    if (itemStack.is(ItemTags.SHULKER_BOXES)) {
                         // Further shulker processing
                         List<ItemStack> shulkerInventory = Utils.getShulkerInventory(itemStack);
                         for (int j = 0; j < shulkerInventory.size(); ++j) {
@@ -74,7 +73,7 @@ public class Persistence implements DedicatedServerModInitializer {
             for (EquipmentSlot slot : EquipmentSlot.values()) {
                 ItemStack equipmentStack = equipment.get(slot);
                 if (!equipmentStack.isEmpty()) {
-                    if (equipmentStack.is(ConventionalItemTags.SHULKER_BOXES)) {
+                    if (equipmentStack.is(ItemTags.SHULKER_BOXES)) {
                         // Process shulker box
                         List<ItemStack> equippedShulkerInventory = Utils.getShulkerInventory(equipmentStack);
                         for (int k = 0; k < equippedShulkerInventory.size(); ++k) {
@@ -100,10 +99,10 @@ public class Persistence implements DedicatedServerModInitializer {
             return InteractionResult.FAIL;
         });
 
-        // Add persistence to shulker boxes
+        // Add persistence to shulker boxes on crafting
         CraftItemCallback.EVENT.register((craftingRecipeInput, resultStack) -> {
 
-            if (resultStack.itemStack.is(ConventionalItemTags.SHULKER_BOXES)) {
+            if (resultStack.itemStack.is(ItemTags.SHULKER_BOXES)) {
                 Utils.addPersistence(resultStack.itemStack);
             }
             // Return pass even if we altered the item stack because we don't need to cancel the whole event
