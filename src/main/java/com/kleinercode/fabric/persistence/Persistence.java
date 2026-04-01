@@ -37,6 +37,7 @@ public class Persistence implements DedicatedServerModInitializer {
                     MutableComponent text = keepInventoryMessageBase.copy();
                     text.append(world.gatherChunkSourceStats());
                     world.getServer().getPlayerList().broadcastSystemMessage(text, false);
+                    LOGGER.warn(text.toString());
                 }
             }
 
