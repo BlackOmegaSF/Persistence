@@ -105,10 +105,9 @@ public class Persistence implements DedicatedServerModInitializer {
 
             if (resultStack.itemStack.is(ConventionalItemTags.SHULKER_BOXES)) {
                 Utils.addPersistence(resultStack.itemStack);
-                return InteractionResult.FAIL;
-            } else {
-                return InteractionResult.PASS;
             }
+            // Return pass even if we altered the item stack because we don't need to cancel the whole event
+            return InteractionResult.PASS;
 
         });
 
@@ -138,22 +137,6 @@ public class Persistence implements DedicatedServerModInitializer {
             return InteractionResult.PASS;
 
         });
-
-        // Check for Shulker Box crafting
-
-        CraftItemCallback.EVENT.register(((craftingRecipeInput, resultStack) -> {
-
-            if (resultStack.itemStack.is(ItemTags.SHULKER_BOXES)) {
-                if (!Utils.checkForPersistence(resultStack.itemStack)) {
-                    // Result is a shulker box without Persistence, so give it Persistence
-                    Utils.addPersistence(resultStack.itemStack);
-                }
-            }
-
-            // Return pass because we altered the item stack but don't need to cancel the whole event
-            return InteractionResult.PASS;
-
-        }));
 
     }
 
