@@ -16,8 +16,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ShapedRecipe.class)
 public abstract class ShapedRecipeMixin {
 
-    @Inject(method = "assemble(Lnet/minecraft/world/item/crafting/CraftingInput;Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/world/item/ItemStack;", at = @At("HEAD"), cancellable = true)
-    private void headOfCraft(CraftingInput craftingRecipeInput, HolderLookup.Provider wrapperLookup, CallbackInfoReturnable<ItemStack> ci) {
+    @Inject(method = "assemble(Lnet/minecraft/world/item/crafting/CraftingInput;)Lnet/minecraft/world/item/ItemStack;", at = @At("HEAD"), cancellable = true)
+    private void headOfCraft(CraftingInput craftingRecipeInput, CallbackInfoReturnable<ItemStack> ci) {
 
         ShapedRecipeAccessor accessor = (ShapedRecipeAccessor) this;
         ItemStackWrapper resultStack = new ItemStackWrapper(accessor.getResult().copy());
