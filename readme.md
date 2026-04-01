@@ -8,7 +8,7 @@ This mod adds the Persistence status, allowing you to keep items after you die.
 1. Craft a Reinforced Emerald:\
     ![Crafting box with an emerald in the center surrounded by 9 iron ingots](/misc/Emerald%20Crafting.png)<br><br>
 2. Combine your desired item with the Reinforced Emerald in an anvil.\
-    ![Anvil dialog box with a stick in the left slot and a Reinforced Emerald on the right](/misc/Emerald%20Anvil.png)\
+    ![Anvil dialog box with a stick in the left slot and a Reinforced Emerald on the right](/misc/Emerald%20Anvil.png)
 > [!TIP]
 > *The Reinforced Emerald needs to be in the right-hand slot!*
  
