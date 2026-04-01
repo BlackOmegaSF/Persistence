@@ -20,7 +20,7 @@ public abstract class ShapedRecipeMixin {
     private void headOfCraft(CraftingInput craftingRecipeInput, CallbackInfoReturnable<ItemStack> ci) {
 
         ShapedRecipeAccessor accessor = (ShapedRecipeAccessor) this;
-        ItemStackWrapper resultStack = new ItemStackWrapper(accessor.getResult().copy());
+        ItemStackWrapper resultStack = new ItemStackWrapper(accessor.getResult().create());
         InteractionResult result = CraftItemCallback.EVENT.invoker().interact(craftingRecipeInput, resultStack);
 
         if (result.equals(InteractionResult.FAIL)) {
