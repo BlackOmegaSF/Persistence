@@ -8,6 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.Prediction;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
@@ -54,7 +55,7 @@ public class Persistence implements DedicatedServerModInitializer {
                             ItemStack slotItem = shulkerInventory.get(j);
                             if (!Utils.checkForPersistence(slotItem)) {
                                 // drop the item and remove it from inventory
-                                player.drop(slotItem, true, false);
+                                player.drop(slotItem, false, Prediction.PREDICTED);
                                 shulkerInventory.set(j, ItemStack.EMPTY);
                             }
                         }
@@ -63,7 +64,7 @@ public class Persistence implements DedicatedServerModInitializer {
                         // Check for persistence
                         if (!Utils.checkForPersistence(itemStack)) {
                             // drop the item and remove it from inventory
-                            player.drop(itemStack, true, false);
+                            player.drop(itemStack, false, Prediction.PREDICTED);
                             mainInventory.set(i, ItemStack.EMPTY);
                         }
                     }
@@ -80,7 +81,7 @@ public class Persistence implements DedicatedServerModInitializer {
                             ItemStack slotItem = equippedShulkerInventory.get(k);
                             if (!Utils.checkForPersistence(slotItem)) {
                                 // drop the item and remove it from inventory
-                                player.drop(slotItem, true, false);
+                                player.drop(slotItem, false, Prediction.PREDICTED);
                                 equippedShulkerInventory.set(k, ItemStack.EMPTY);
                             }
                         }
@@ -89,7 +90,7 @@ public class Persistence implements DedicatedServerModInitializer {
                         // Check for persistence
                         if (!Utils.checkForPersistence(equipmentStack)) {
                             // drop the item and remove it from inventory
-                            player.drop(equipmentStack, true, false);
+                            player.drop(equipmentStack, false, Prediction.PREDICTED);
                             equipment.set(slot, ItemStack.EMPTY);
                         }
                     }

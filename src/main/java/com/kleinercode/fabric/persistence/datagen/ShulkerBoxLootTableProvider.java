@@ -4,10 +4,6 @@ import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootSubProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.references.BlockIds;
-import net.minecraft.references.BlockItemIds;
-import net.minecraft.references.ItemIds;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -15,9 +11,8 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 
-import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 
 public class ShulkerBoxLootTableProvider extends FabricBlockLootSubProvider {
@@ -40,7 +35,7 @@ public class ShulkerBoxLootTableProvider extends FabricBlockLootSubProvider {
                     applyExplosionCondition(
                         dyed_shulker_box,
                         LootPool.lootPool()
-                            .setRolls(ConstantValue.exactly(1.0F))
+                            .setRolls(ContextIntProviders.exactly(1))
                             .add(LootItem.lootTableItem(dyed_shulker_box)
                                 .apply(
                                     CopyComponentsFunction.copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY)
@@ -63,7 +58,7 @@ public class ShulkerBoxLootTableProvider extends FabricBlockLootSubProvider {
                 applyExplosionCondition(
                     Blocks.SHULKER_BOX,
                     LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1.0F))
+                        .setRolls(ContextIntProviders.exactly(1))
                         .add(LootItem.lootTableItem(Blocks.SHULKER_BOX)
                             .apply(
                                 CopyComponentsFunction.copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY)
